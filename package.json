@@ -1,0 +1,33 @@
+{
+  "name": "genetic-iter",
+  "description": "A functional genetic algorithm library",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "author": "Maurizio Lupo <maurizio.lupo@gmail.com>",
+  "repository": "git@github.com:sithmel/genetic-alg.git",
+  "scripts": {
+    "test": "mocha",
+    "watch": "npm run test -- -w",
+    "lint": "eslint --fix --ext .js ./src ./test",
+    "precommit": "npm run lint",
+    "prepush": "npm run test"
+  },
+  "keywords": [
+    "genetic",
+    "algorithm"
+  ],
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "mocha": "^7.2.0"
+  },
+  "dependencies": {
+    "ramda": "^0.27.0"
+  }
+}
