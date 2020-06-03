@@ -1,5 +1,5 @@
-const GeneticAlg = require('../src')
 const assert = require('assert')
+const GeneticAlg = require('../src')
 
 const TERMS = 3
 const RESOLUTION = 3
@@ -7,8 +7,7 @@ const RESOLUTION = 3
 const parabolicAlg = new GeneticAlg({
   populationSize: 20,
   crossoverChance: 0.3,
-  mutateChance: 1.0,
-  optimize: Math.min,
+  optimize: (a, b) => a.fitness - b.fitness,
   seed() {
     let a = []
     // create coefficients for polynomial with values between (-0.5, 0.5)

@@ -27,7 +27,5 @@
     "husky": "^4.2.5",
     "mocha": "^7.2.0"
   },
-  "dependencies": {
-    "ramda": "^0.27.0"
-  }
+  "dependencies": {}
 }

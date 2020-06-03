@@ -1,7 +1,7 @@
 
+const assert = require('assert')
 const select1 = require('../src/select1')
 const select2 = require('../src/select2')
-var assert = require('assert')
 
 let originalRandom = Math.random
 let counter = 0
@@ -19,7 +19,7 @@ function restoreRandom() {
 }
 
 const cfg = {
-  optimize: Math.max
+  optimize: (a, b) => b.fitness - a.fitness
 }
 
 const pop = [

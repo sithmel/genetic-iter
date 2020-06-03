@@ -1,7 +1,5 @@
 # genetic-iter
 
-
-
 ## Installing
 `npm install genetic-iter`
 
@@ -146,3 +144,7 @@ generator.next()
 // ...
 
 ```
+
+todo:
+simpler import
+readme

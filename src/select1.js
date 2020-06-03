@@ -1,17 +1,12 @@
-const R = require('ramda')
+const { times, fittest } = require('./utils')
 
 const randInt = (max) => Math.floor(Math.random() * max)
 
 const randElement = (arr) => arr[randInt(arr.length)]
 
-const randElements = (n, arr) => R.times(() => randElement(arr), n)
+const randElements = (n, arr) => times(() => randElement(arr), n)
 
-const optimal = (optimize, arr) => R.reduce(optimize, R.head(arr), R.tail(arr))
-
-const optimizeFromConfig = (c) => (a, b) =>
-  c.optimize(a.fitness, b.fitness) === a.fitness ? a : b
-
-const bestOf = (n) => (c, pop) => optimal(optimizeFromConfig(c), randElements(n, pop))
+const bestOf = (n) => (c, pop) => fittest(c.optimize, randElements(n, pop))
 
 module.exports = {
   random: (c, arr) => randElement(arr),
