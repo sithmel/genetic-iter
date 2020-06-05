@@ -34,27 +34,27 @@ describe('select1', () => {
 
   it('random', () => {
     mockRandom([0.1])
-    assert.equal(select1.random(cfg, pop), pop[0])
+    assert.equal(select1.random(pop, cfg), pop[0])
   })
 
   it('best of 2', () => {
     mockRandom([0, 0.9])
-    assert.equal(select1.bestOf2(cfg, pop), pop[0])
+    assert.equal(select1.bestOf2(pop, cfg), pop[0])
   })
 
   it('best of 3', () => {
     mockRandom([0, 0.3, 0.9])
-    assert.equal(select1.bestOf3(cfg, pop), pop[0])
+    assert.equal(select1.bestOf3(pop, cfg), pop[0])
   })
 
   it('best of n', () => {
     mockRandom([0, 0.9])
-    assert.equal(select1.bestOfN(2)(cfg, pop), pop[0])
+    assert.equal(select1.bestOfN(2)(pop, cfg), pop[0])
   })
 
   it('fittest', () => {
     mockRandom([0, 0.9])
-    assert.equal(select1.fittest(cfg, pop), pop[0])
+    assert.equal(select1.fittest(pop, cfg), pop[0])
   })
 })
 
@@ -63,35 +63,35 @@ describe('select2', () => {
 
   it('random', () => {
     mockRandom([0, 0.9])
-    const [i1, i2] = select2.random(cfg, pop)
+    const [i1, i2] = select2.random(pop, cfg)
     assert.equal(i1, pop[0])
     assert.equal(i2, pop[3])
   })
 
   it('bestOf2', () => {
     mockRandom([0, 0.9, 0.9, 0.3])
-    const [i1, i2] = select2.bestOf2(cfg, pop)
+    const [i1, i2] = select2.bestOf2(pop, cfg)
     assert.equal(i1, pop[0])
     assert.equal(i2, pop[1])
   })
 
   it('bestOf3', () => {
     mockRandom([0, 0.9, 0.1, 0.9, 0.3, 0.3])
-    const [i1, i2] = select2.bestOf3(cfg, pop)
+    const [i1, i2] = select2.bestOf3(pop, cfg)
     assert.equal(i1, pop[0])
     assert.equal(i2, pop[1])
   })
 
   it('bestOfN', () => {
     mockRandom([0, 0.9, 0.9, 0.3])
-    const [i1, i2] = select2.bestOfN(2)(cfg, pop)
+    const [i1, i2] = select2.bestOfN(2)(pop, cfg)
     assert.equal(i1, pop[0])
     assert.equal(i2, pop[1])
   })
 
   it('fittestAndRandom', () => {
     mockRandom([0.9])
-    const [i1, i2] = select2.fittestAndRandom(cfg, pop)
+    const [i1, i2] = select2.fittestAndRandom(pop, cfg)
     assert.equal(i1, pop[0])
     assert.equal(i2, pop[3])
   })

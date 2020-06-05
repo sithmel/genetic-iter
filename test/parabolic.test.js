@@ -7,7 +7,7 @@ const RESOLUTION = 3
 const parabolicAlg = new GeneticAlg({
   populationSize: 20,
   crossoverChance: 0.3,
-  optimize: (a, b) => a.fitness - b.fitness,
+  optimize: GeneticAlg.Optimize.Minimize,
   seed() {
     let a = []
     // create coefficients for polynomial with values between (-0.5, 0.5)

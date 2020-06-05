@@ -6,7 +6,7 @@ const SOLUTION = 'thisisthesolution'
 const stringAlg = new GeneticAlg({
   populationSize: 20,
   crossoverChance: 0.4,
-  optimize: (a, b) => b.fitness - a.fitness,
+  optimize: GeneticAlg.Optimize.Maximize,
   seed() {
     var text = ''
     var charset = 'abcdefghijklmnopqrstuvwxyz'

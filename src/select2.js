@@ -4,12 +4,12 @@ const bestOf2 = S1.bestOfN(2)
 const bestOf3 = S1.bestOfN(3)
 
 module.exports = {
-  random: (c, arr) => [S1.random(c, arr), S1.random(c, arr)],
-  bestOf2: (c, arr) => [bestOf2(c, arr), bestOf2(c, arr)],
-  bestOf3: (c, arr) => [bestOf3(c, arr), bestOf3(c, arr)],
+  random: (arr, c) => [S1.random(arr, c), S1.random(arr, c)],
+  bestOf2: (arr, c) => [bestOf2(arr, c), bestOf2(arr, c)],
+  bestOf3: (arr, c) => [bestOf3(arr, c), bestOf3(arr, c)],
   bestOfN: (n) => {
     const bestOf = S1.bestOfN(n)
-    return (c, arr) => [bestOf(c, arr), bestOf(c, arr)]
+    return (arr, c) => [bestOf(arr, c), bestOf(arr, c)]
   },
-  fittestAndRandom: (c, arr) => [arr[0], S1.random(c, arr)]
+  fittestAndRandom: (arr, c) => [arr[0], S1.random(arr, c)]
 }
