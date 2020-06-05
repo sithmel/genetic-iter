@@ -1,18 +1,18 @@
 
-const assert = require('assert')
-const select1 = require('../src/select1')
-const select2 = require('../src/select2')
+import assert from 'assert'
+import select1 from '../src/select1.js'
+import select2 from '../src/select2.js'
 
-let originalRandom = Math.random
+const originalRandom = Math.random
 let counter = 0
-seq = []
+let seq = []
 
-function mockRandom(newSeq) {
+function mockRandom (newSeq) {
   seq = newSeq
   Math.random = () => seq[counter++]
 }
 
-function restoreRandom() {
+function restoreRandom () {
   counter = 0
   seq = []
   Math.random = originalRandom

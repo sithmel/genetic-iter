@@ -1,17 +1,28 @@
 {
   "name": "genetic-iter",
-  "description": "A functional genetic algorithm library",
+  "description": "An iterative genetic algorithm library",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "index.js",
+  "type": "module",
+  "module": "./dist/esm.js",
+  "main": "./dist/cjs.js",
+  "exports": {
+    "import": "./dist/esm.js",
+    "default": "./dist/cjs.js"
+  },
   "author": "Maurizio Lupo <maurizio.lupo@gmail.com>",
   "repository": "git@github.com:sithmel/genetic-iter.git",
   "scripts": {
+    "build:browser": "rollup src/index.js --file dist/browser.js --format iife --output.name GeneticIter",
+    "build:cjs": "rollup src/index.js --file dist/cjs.js --format cjs",
+    "build:esm": "rollup src/index.js --file dist/esm.js --format esm",
+    "build": "npm run build:browser && npm run build:cjs && npm run build:esm",
     "test": "mocha",
     "watch": "npm run test -- -w",
     "lint": "eslint --fix --ext .js ./src ./test",
     "precommit": "npm run lint",
-    "prepush": "npm run test"
+    "prepush": "npm run test",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "genetic",
@@ -25,7 +36,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.5",
-    "mocha": "^7.2.0"
+    "mocha": "^7.2.0",
+    "rollup": "^2.13.1"
   },
   "dependencies": {}
 }

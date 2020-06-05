@@ -1,5 +1,5 @@
-const assert = require('assert')
-const GeneticAlg = require('../src')
+import assert from 'assert'
+import GeneticAlg from '../src/index.js'
 
 const TERMS = 3
 const RESOLUTION = 3
@@ -8,22 +8,22 @@ const parabolicAlg = new GeneticAlg({
   populationSize: 20,
   crossoverChance: 0.3,
   optimize: GeneticAlg.Optimize.Minimize,
-  seed() {
-    let a = []
+  seed () {
+    const a = []
     // create coefficients for polynomial with values between (-0.5, 0.5)
     for (let i = 0; i < TERMS; ++i) {
       a.push(Math.random() - 0.5)
-    }    
+    }
     return a
   },
-  mutate(entity) {
+  mutate (entity) {
     // allow chromosomal drift with this range (-0.05, 0.05)
     const drift = ((Math.random() - 0.5) * 2) * 0.05
     const i = Math.floor(Math.random() * entity.length)
     entity[i] += drift
     return entity
   },
-  crossover(mother, father) {
+  crossover (mother, father) {
     // crossover via interpolation
     function lerp (a, b, p) {
       return a + (b - a) * p
@@ -40,7 +40,7 @@ const parabolicAlg = new GeneticAlg({
 
     return [son, daughter]
   },
-  fitness(entity) {
+  fitness (entity) {
     function evaluatePoly (x) {
       let s = 0
       let p = 1

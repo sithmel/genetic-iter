@@ -1,5 +1,5 @@
-const assert = require('assert')
-const GeneticAlg = require('../src')
+import assert from 'assert'
+import GeneticAlg from '../src/index.js'
 
 const SOLUTION = 'thisisthesolution'
 
@@ -7,7 +7,7 @@ const stringAlg = new GeneticAlg({
   populationSize: 20,
   crossoverChance: 0.4,
   optimize: GeneticAlg.Optimize.Maximize,
-  seed() {
+  seed () {
     var text = ''
     var charset = 'abcdefghijklmnopqrstuvwxyz'
     for (var i = 0; i < SOLUTION.length; i++) {
@@ -16,16 +16,15 @@ const stringAlg = new GeneticAlg({
 
     return text
   },
-  mutate(entity) {
+  mutate (entity) {
     const replaceAt = (str, index, character) =>
       str.substr(0, index) + character + str.substr(index + character.length)
 
     // chromosomal drift
     const i = Math.floor(Math.random() * entity.length)
     return replaceAt(entity, i, String.fromCharCode(entity.charCodeAt(i) + (Math.floor(Math.random() * 2) ? 1 : -1)))
-
   },
-  crossover(mother, father) {
+  crossover (mother, father) {
     // two-point crossover
     const len = mother.length
     let ca = Math.floor(Math.random() * len)
@@ -41,13 +40,12 @@ const stringAlg = new GeneticAlg({
 
     return [son, daughter]
   },
-  fitness(entity) {
+  fitness (entity) {
     let fitness = 0
 
-    var i
     for (let i = 0; i < entity.length; ++i) {
       // increase fitness for each character that matches
-      if (entity[i] == SOLUTION[i]) {
+      if (entity[i] === SOLUTION[i]) {
         fitness += 1
       }
 

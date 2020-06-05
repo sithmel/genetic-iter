@@ -1,7 +1,6 @@
-const { times } = require('./utils')
-
-const Select1 = require('./select1')
-const Select2 = require('./select2')
+import { times } from './utils.js'
+import Select1 from './select1.js'
+import Select2 from './select2.js'
 
 const Optimize = {
   Maximize: (a, b) => b.fitness - a.fitness,
@@ -31,14 +30,10 @@ class GeneticAlg {
       crossover
     } = this.config
 
-    if (typeof fitness !== 'function')
-      throw new Error('The fitness function is mandatory')
-    if (typeof seed !== 'function' && !Array.isArray(initialPopulation))
-      throw new Error('Either the initialPopulation array or the seed function are mandatory')
-    if (typeof crossoverChance > 0 && typeof crossover !== 'function')
-      throw new Error('You should add a crossover function if the crossoverChance is greater than 0')
-    if (typeof crossoverChance < 1 && typeof mutate !== 'function')
-      throw new Error('You should add a mutate function if the crossoverChance is less than 1')
+    if (typeof fitness !== 'function') { throw new Error('The fitness function is mandatory') }
+    if (typeof seed !== 'function' && !Array.isArray(initialPopulation)) { throw new Error('Either the initialPopulation array or the seed function are mandatory') }
+    if (typeof crossoverChance > 0 && typeof crossover !== 'function') { throw new Error('You should add a crossover function if the crossoverChance is greater than 0') }
+    if (typeof crossoverChance < 1 && typeof mutate !== 'function') { throw new Error('You should add a mutate function if the crossoverChance is less than 1') }
 
     this._calcFitness = (individual) => ({ individual, fitness: fitness(individual) })
     this._mutate = (i) => this._calcFitness(mutate(i.individual))
@@ -46,32 +41,32 @@ class GeneticAlg {
       crossover(i1.individual, i2.individual).map(this._calcFitness)
   }
 
-  sortByFitness(pop) {
+  sortByFitness (pop) {
     const { optimize } = this.config
     return pop.sort(optimize)
   }
 
-  initPop() {
+  initPop () {
     const { seed, populationSize, initialPopulation } = this.config
     const initial = initialPopulation || times(seed, populationSize)
     return this.sortByFitness(initial.map((item) => this._calcFitness(item)))
   }
 
-  calculateStats(pop) {
-    const mean = pop.reduce((a, b) => a + b.fitness, 0) / pop.length;
+  calculateStats (pop) {
+    const mean = pop.reduce((a, b) => a + b.fitness, 0) / pop.length
     const stdev = Math.sqrt(pop
       .map((a) => (a.fitness - mean) * (a.fitness - mean))
       .reduce((a, b) => a + b, 0) / pop.length)
 
     return {
       max: pop[0].fitness,
-      min: pop[pop.length-1].fitness,
+      min: pop[pop.length - 1].fitness,
       mean: mean,
       stdev: stdev
     }
   }
 
-  extractIndividuals(pop) {
+  extractIndividuals (pop) {
     return pop.map((item) => item.individual)
   }
 
@@ -84,7 +79,7 @@ class GeneticAlg {
       select2
     } = this.config
 
-    if (!pop){
+    if (!pop) {
       pop = this.initPop()
     }
 
@@ -122,4 +117,4 @@ GeneticAlg.Optimize = Optimize
 GeneticAlg.Select1 = Select1
 GeneticAlg.Select2 = Select2
 
-module.exports = GeneticAlg
+export default GeneticAlg

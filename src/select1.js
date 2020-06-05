@@ -1,4 +1,4 @@
-const { times, fittest } = require('./utils')
+import { times, fittest } from './utils.js'
 
 const randInt = (max) => Math.floor(Math.random() * max)
 
@@ -8,7 +8,7 @@ const randElements = (n, arr) => times(() => randElement(arr), n)
 
 const bestOf = (n) => (pop, c) => fittest(c.optimize, randElements(n, pop))
 
-module.exports = {
+export default {
   random: (arr, c) => randElement(arr),
   bestOf2: bestOf(2),
   bestOf3: bestOf(3),
