@@ -16,7 +16,7 @@ const geneticIter = new GeneticIter({
   mutate: x => x,
   crossover: (a, b) => [a, b],
   seed: Math.random,
-  fitness: (a) => a * 2
+  fitness: (a) => a * 2,
   populationSize: 250,
   crossoverChance: 0.9,
   fittestAlwaysSurvives: true
